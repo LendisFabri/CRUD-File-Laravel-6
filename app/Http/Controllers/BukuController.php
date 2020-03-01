@@ -43,17 +43,18 @@ class BukuController extends Controller
         $data->penulis_buku = $request->penulis_buku;
         $data->tanggal_terbit_buku = $request->input('tanggal_terbit_buku');
         
-        $lokasi_sampul_buku = $request->file('lokasi_sampul_buku');
-        $ekstensi_sampul = $lokasi_sampul_buku->getClientOriginalExtension();
-        $nama_sampul = "sampul_" . $request->input('judul_buku').".".$ekstensi_sampul;
-        $lokasi_sampul_buku->move('uploads/gambar/',$nama_sampul);
-        $data->lokasi_sampul_buku = $nama_sampul;
-
-        $lokasi_sampel_buku = $request->file('lokasi_sampel_buku');
-        $ekstensi_sampel = $lokasi_sampel_buku->getClientOriginalExtension();
+        $sampel_buku = $request->file('sampel_buku');
+        $ekstensi_sampel = $sampel_buku->getClientOriginalExtension();
         $nama_sampel = "sampel_" . $request->input('judul_buku').".".$ekstensi_sampel;
-        $lokasi_sampel_buku->move('uploads/dokumen/',$nama_sampel);
-        $data->lokasi_sampel_buku = $nama_sampel;
+        $sampel_buku->move('uploads/dokumen/',$nama_sampel);
+        $data->sampel_buku = $nama_sampel;
+
+        $sampul_buku = $request->file('sampul_buku');
+        $ekstensi_sampul = $sampul_buku->getClientOriginalExtension();
+        $nama_sampul = "sampul_" . $request->input('judul_buku').".".$ekstensi_sampul;
+        $sampul_buku->move('uploads/gambar/',$nama_sampul);
+        $data->sampul_buku = $nama_sampul;
+
 
         $data->save();
 
@@ -98,33 +99,33 @@ class BukuController extends Controller
         $data->penulis_buku = $request->penulis_buku;
         $data->tanggal_terbit_buku = $request->input('tanggal_terbit_buku');
 
-        if (empty($request->file('lokasi_sampul_buku'))){
-            $data->lokasi_sampul_buku = $data->lokasi_sampul_buku;
+        if (empty($request->file('sampul_buku'))){
+            $data->sampul_buku = $data->sampul_buku;
         }
         else{
-            unlink('uploads/gambar/'.$data->lokasi_sampul_buku);
-            $lokasi_sampul_buku = $request->file('lokasi_sampul_buku');
-            $ekstensi_sampul = $lokasi_sampul_buku->getClientOriginalExtension();
+            unlink('uploads/gambar/'.$data->sampul_buku);
+            $sampul_buku = $request->file('sampul_buku');
+            $ekstensi_sampul = $sampul_buku->getClientOriginalExtension();
             $nama_sampul = "sampul_" . $request->judul_buku.".".$ekstensi_sampul;
-            $lokasi_sampul_buku->move('uploads/gambar/',$nama_sampul);
-            $data->lokasi_sampul_buku = $nama_sampul;
+            $sampul_buku->move('uploads/gambar/',$nama_sampul);
+            $data->sampul_buku = $nama_sampul;
             
         }
 
-        if (empty($request->file('lokasi_sampel_buku'))){
-            $data->lokasi_sampel_buku = $data->lokasi_sampel_buku;
+        if (empty($request->file('sampel_buku'))){
+            $data->sampel_buku = $data->sampel_buku;
         }
         else{            
-            unlink('uploads/dokumen/'.$data->lokasi_sampel_buku); 
-            $lokasi_sampel_buku = $request->file('lokasi_sampel_buku');
-            $ekstensi_sampel = $lokasi_sampel_buku->getClientOriginalExtension();
+            unlink('uploads/dokumen/'.$data->sampel_buku); 
+            $sampel_buku = $request->file('sampel_buku');
+            $ekstensi_sampel = $sampel_buku->getClientOriginalExtension();
             $nama_sampel = "sampel_" . $request->judul_buku.".".$ekstensi_sampel;
-            $lokasi_sampel_buku->move('uploads/dokumen/',$nama_sampel);
-            $data->lokasi_sampel_buku = $nama_sampel;
+            $sampel_buku->move('uploads/dokumen/',$nama_sampel);
+            $data->sampel_buku = $nama_sampel;
         }
 
         $data->save();
-        return redirect()->route('buku.index')->with('success','Data berhasil diubah!');
+        return redirect()->route('buku.index')->with('success','Selamat! Data buku ' . $data->judul_buku . ' berhasil diubah!');
     }
 
     /**
@@ -136,7 +137,7 @@ class BukuController extends Controller
     public function destroy($id_buku)
     {
         $data = Buku::findOrFail($id_buku);
-        File::delete('gambar/'.$data->lokasi_sampul_buku, 'dokumen/'.$data->lokasi_sampel_buku);
+        File::delete('uploads/gambar/'.$data->sampul_buku, 'uploads/dokumen/'.$data->sampel_buku);
         $data->delete();
         return redirect()->route('buku.index')->with('success','Data berhasil dihapus!');
     }

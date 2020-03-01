@@ -26,15 +26,15 @@
     <label>Tanggal Terbit Buku</label>
     <input type="date" name="tanggal_terbit_buku" class="form-control" value="{{ $data->tanggal_terbit_buku }}" required>
   </div>
-    <img src="{{ url('uploads/gambar/'.$data->lokasi_sampul_buku) }}" style="width: 150px; height: 200px;">
+    <img src="{{ url('uploads/gambar/'.$data->sampul_buku) }}" style="width: 150px; height: 200px;">
     <div class="form-group">
-    <label for="lokasi_sampul_buku">File Gambar Sebelumnya</label>
-    <input type="file" class="form-control-file" name="lokasi_sampul_buku" required>
+    <label for="sampul_buku">File Gambar Sebelumnya</label>
+    <input type="file" class="form-control-file" name="sampul_buku" required>
   </div>
 
   <div class="form-group">
-    <label for="lokasi_sampel_buku">File Dokumen Sebelumnya : {{ $data->lokasi_sampel_buku }}</label>
-    <input type="file" class="form-control-file" name="lokasi_sampel_buku" required>
+    <label for="sampel_buku">File Dokumen Sebelumnya : {{ $data->sampel_buku }}</label>
+    <input type="file" class="form-control-file" name="sampel_buku" required>
   </div>
   <button type="submit" class="btn btn-dark float-left">Simpan</button>
 </form>

@@ -29,11 +29,11 @@
   </div>
   <div class="form-group">
     <label>Sampul Buku</label>
-    <input type="file" class="form-control-file" name="lokasi_sampul_buku" required>
+    <input type="file" class="form-control-file" name="sampul_buku" required>
   </div>
   <div class="form-group">
     <label>Sampel Buku</label>
-    <input type="file" class="form-control-file" name="lokasi_sampel_buku" required>
+    <input type="file" class="form-control-file" name="sampel_buku" required>
   </div>
   <button type="submit" class="btn btn-dark float-left">Simpan</button>
 </form>

@@ -18,8 +18,8 @@ class CreateBukusTable extends Migration
             $table->string('judul_buku');
             $table->string('penulis_buku');
             $table->string('tanggal_terbit_buku');
-            $table->string('lokasi_sampul_buku');
-            $table->string('lokasi_sampel_buku');
+            $table->string('sampul_buku');
+            $table->string('sampel_buku');
             $table->timestamps();
         });
     }
