@@ -30,8 +30,8 @@
 				<td>{{ $data->judul_buku }}</td>
 				<td>{{ $data->penulis_buku }}</td>
 				<td>{{ $data->tanggal_terbit_buku }}</td>
-				<td><img src="{{ url('uploads/gambar/'.$data->lokasi_sampul_buku) }}" style="width: 125px; height: 175px;"></td>
-				<td>{{$data->lokasi_sampel_buku}}</td>
+				<td><img src="{{ url('uploads/gambar/'.$data->sampul_buku) }}" style="width: 125px; height: 175px;"></td>
+				<td>{{$data->sampel_buku}}</td>
 				<td>
 					<a href="{{ route('buku.edit',$data->id_buku) }}" class="text-white"><button class=" btn btn-sm btn-warning border-0">Ubah</a></button>
 					<form action="{{ route('buku.destroy', $data->id_buku) }}" method="post">
